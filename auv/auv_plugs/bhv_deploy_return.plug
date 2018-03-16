@@ -1,0 +1,22 @@
+//**************** RETURN BEHAVIORS ***************************
+
+Behavior = BHV_Waypoint
+{
+  name      = return_to_waypoint
+  speed     = $(DEPLOY_SPEED)
+  radius    = $(WPT_RADIUS)
+  nm_radius = $(NM_RADIUS)
+  updates   = DEPLOY_STATION
+  duration  = no-time-limit
+  perpetual = true
+  condition = (MODE == RETURN)
+}
+
+Behavior = BHV_ConstantDepth
+{
+  name      = return_depth
+  updates   = SENSOR_DEPTH_DEPLOY
+  duration  = no-time-limit
+  condition = (MODE == RETURN)
+}
+

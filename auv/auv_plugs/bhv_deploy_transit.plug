@@ -1,0 +1,25 @@
+//**************** Transit BEHAVIORS ***************************
+
+Behavior = BHV_Waypoint
+{
+  name      = transit_path
+  speed     = $(DEPLOY_SPEED)
+  radius    = $(WPT_RADIUS)
+  nm_radius = $(NM_RADIUS)
+  points    = 0,0
+  updates   = TRANSIT_ROUTE
+  duration  = no-time-limit
+  perpetual = true 
+  condition = (MODE == TRANSIT)
+  endflag  = TRANSIT_MODE = DIRECT
+}
+
+Behavior = BHV_ConstantDepth
+{
+  name      = transit_depth
+  depth     = $(TRANSIT_DEPTH)
+  updates   = TRANSIT_DEPTH
+  duration  = no-time-limit
+  condition = (MODE == TRANSIT)
+}
+

@@ -1,0 +1,49 @@
+// laboratory for autonomous marine sensing systems
+// massachusetts institute of technology
+//
+// mission configuration meta-moos file
+// for the node whose folder this file resides in
+//
+// use simulation_launch.sh and runtime_launch.sh in this
+// directory to launch the respective simulation and vehicle runtime
+// missions
+//
+// questions about this setup should be directed to t. schneider: tes@mit.edu
+
+////////////////////////////////////////////////////////////
+//                        definitions
+////////////////////////////////////////////////////////////
+#include all.ydef
+
+////////////////////////////////////////////////////////////
+//                        inheritance
+////////////////////////////////////////////////////////////
+
+NoNetwork = true
+ServerHost = $(HOST)
+ServerPort = $(PORT)
+Community  = $(VNAME)
+
+MOOSTimeWarp = 1
+
+#include cruise/current/datum.plug
+
+@ANTLER Run = MOOSDB @ NewConsole = false
+
+#include auv/auv_plugs/pMarinePID.plug
+#include auv/auv_plugs/pHelmIvP.plug
+
+#ifdef simulation
+	#include auv/auv_plugs/uSimMarine.plug
+	#include cruise/current/pMarineViewer.plug
+	#include auv/auv_plugs/uProcessWatch.plug
+	#include auv/auv_plugs/pNodeReporter.plug
+
+#endif
+
+#include auv/auv_plugs/uXMS.plug
+#include auv/auv_plugs/pLogger.plug
+
+#ifdef runtime
+
+#endif

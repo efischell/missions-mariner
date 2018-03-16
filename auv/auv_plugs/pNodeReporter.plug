@@ -1,0 +1,9 @@
+ProcessConfig = pNodeReporter
+{
+  MaxAppTick    = 2
+  AppTick	= 2
+  CommsTick	= 2
+
+  platform_type   = AUV
+  platform_length = 4
+}

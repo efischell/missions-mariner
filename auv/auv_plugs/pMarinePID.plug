@@ -1,0 +1,53 @@
+//------------------------------------------------------------------
+// pMarinePID config block
+
+ProcessConfig = pMarinePID
+{
+  AppTick    = 10
+  CommsTick  = 10
+
+        ACTIVE_START = true
+	DEPTH_CONTROL = 1
+
+	//Yaw PID controller
+        YAW_PID_KP                              = 0.4
+        YAW_PID_KD                              = 1.0
+        YAW_PID_KI                              = 0.01
+        YAW_PID_INTEGRAL_LIMIT                  = 0.1
+
+        //Pitch PID controller
+        PITCH_PID_KP                            = 0.4
+        PITCH_PID_KD                            = 0.8
+        PITCH_PID_KI                            = 0.0
+        PITCH_PID_INTEGRAL_LIMIT                = 0
+
+        //ZPID controller
+        Z_TO_PITCH_PID_KP                       = 0.12
+        Z_TO_PITCH_PID_KD                       = 0.0
+        Z_TO_PITCH_PID_KI                       = 0.004
+        Z_TO_PITCH_PID_INTEGRAL_LIMIT           = 0.05 
+
+	//MAXIMUMS
+	MaxPitch				= 30
+	MaxRudder				= 14
+	MaxElevator     			= 14
+	MaxThrust				= 100
+
+        // Speed PID controller
+        SPEED_PID_KP		                = 1.0
+        SPEED_PID_KD		                = 0.0
+        SPEED_PID_KI		                = 0.0
+        SPEED_PID_INTEGRAL_LIMIT                = 0.07
+
+  // A non-zero SPEED_FACTOR overrides use of SPEED_PID
+  // Will set DESIRED_THRUST = DESIRED_SPEED * SPEED_FACTOR
+  SPEED_FACTOR           = 42.2
+
+// The following is for simulating yaw oscillations
+// perturbation should be set to either 'periodic' or 'random'
+  perturbation = none
+//  perturbation = periodic
+  hdg_amplitude = 10
+  hdg_period = 30
+}
+

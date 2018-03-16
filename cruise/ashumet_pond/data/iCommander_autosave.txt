@@ -1,0 +1,7 @@
+%%% iCommander message save file: Thu Feb 23 15:35:00 2012 %%%
+message::DSOP_TRANSIT
+OUTGOING_COMMAND:=DestinationPlatformId=,MessageType=DSOP_TRANSIT,Transit_Mode=,Transit_Depth=,Transit_Speed=,x_1=,y_1=,x_2=,y_2=,x_3=,y_3=,x_4=,y_4=,x_5=,y_5=
+message::DSOP_DEPLOY
+OUTGOING_COMMAND:=DestinationPlatformId=,MessageType=DSOP_DEPLOY,Deploy_Mode=,Depth_Mode=,Sonar_Control=,Sonar_Process=,Deploy_Duration=,Deploy_X=,Deploy_Y=,Deploy_Speed=,Deploy_Depth=,Alternate_Depth=,Operation_Radius=,Loiter_Radius=,Loiter_Segments=,Survey_Heading=,Survey_Length=,Survey_Width=,Survey_Period=,Clockwise=,GPS_Interval=
+message::POLLER_UPDATE
+ACOMMS_POLLER_UPDATE_IN:=destination=4,update_type=REPLACE,poll_type1=SLOT_DATA,poll_from_id1=1,poll_to_id1=-1,poll_rate1=0,poll_wait1=12,poll_type2=SLOT_DATA,poll_from_id2=4,poll_to_id2=1,poll_rate2=5,poll_wait2=12,poll_type3=,poll_from_id3=,poll_to_id3=,poll_rate3=,poll_wait3=,poll_type4=,poll_from_id4=,poll_to_id4=,poll_rate4=,poll_wait4=,poll_type5=,poll_from_id5=,poll_to_id5=,poll_rate5=,poll_wait5=,poll_type6=,poll_from_id6=,poll_to_id6=,poll_rate6=,poll_wait6=,poll_type7=,poll_from_id7=,poll_to_id7=,poll_rate7=,poll_wait7=,poll_type8=,poll_from_id8=,poll_to_id8=,poll_rate8=,poll_wait8=

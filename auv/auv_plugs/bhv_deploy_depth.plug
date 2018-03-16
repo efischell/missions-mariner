@@ -1,0 +1,15 @@
+//deploy depth
+//----------------------------------------------
+Behavior = BHV_ConstantDepth
+{
+  name      = deploy_depth
+  updates   = SENSOR_DEPTH_DEPLOY
+  duration  = no-time-limit
+  condition = (MODE == DEPLOY) 
+  condition = (MODE != MISSION:DIVING:DEPLOY:TRAIL) 
+  condition = (MODE != MISSION:DIVING:DEPLOY:SAMPLETARFIELD) 
+  condition = (MODE != MISSION:DIVING:DEPLOY:PATHFOLLOW) 
+  condition = (MODE != MISSION:DIVING:DEPLOY:TRANSIT) 
+  condition = (DEPTH_MODE = SINGLE) or ((DEPTH_MODE = ADAPTIVE_ACOMMS) and (DEPLOY_DEPTH_ADAPT != "TRUE") )
+}
+

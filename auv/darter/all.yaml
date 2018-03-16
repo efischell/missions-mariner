@@ -1,0 +1,13 @@
+# specific definitions for darter
+
+VNAME: 'darter'
+VTYPE: 'auv'
+OWNSHIP: 'DARTER'
+HOST: 'localhost'
+PORT: 9001
+LPORT: 9101
+
+config_files: ['../auv.yaml','../../cruise/current/cruise.yaml']
+default_file: '../../global_defaults/global_defaults.yaml'
+
+

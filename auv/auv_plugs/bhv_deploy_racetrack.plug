@@ -1,0 +1,23 @@
+//************* Racetrack deploy behaviors ********************************
+
+
+Behavior = BHV_RaceTrack
+{
+  name      = deploy_racetrack
+  track_length = 400
+  track_width  = $(RACETRACK_WIDTH)
+  distance_tolerance  = 10
+  approach_angle = 60
+  heading        = 270
+  speed          = $(DEPLOY_SPEED)
+  peak_width     = 30
+  summit_delta   = 50
+  points = 500.0, 200.0
+  clockwise = $(RACETRACK_CLOCKWISE)
+  updates = SENSOR_RACETRACK
+  duration  = no-time-limit
+  condition = (MODE == RACETRACK)
+// allow depth changes away from trackline
+  idleflag = IN_TRACK = TRUE
+  inactiveflag = IN_TRACK = TRUE
+}

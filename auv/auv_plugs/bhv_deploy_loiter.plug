@@ -1,0 +1,15 @@
+//************* Deploy behaviors ********************************
+
+//Basic deploy - go to loiter around deploy location
+Behavior = BHV_Loiter
+{
+  name      = deploy_loiter
+  speed     = $(DEPLOY_SPEED)
+  radius    = $(WPT_RADIUS)
+  nm_radius = $(NM_RADIUS)
+  updates   = SENSOR_DEPLOY
+  duration  = no-time-limit
+  clockwise = $(LOITER_CLOCKWISE)
+  acquire_dist = 10
+  condition = MODE == LOITER
+}

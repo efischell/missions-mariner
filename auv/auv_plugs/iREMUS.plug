@@ -1,0 +1,37 @@
+
+ProcessConfig = iREMUS
+{
+	AppTick = 4 //hz
+	CommsTick = 4 //hz
+
+	// Serial configuration
+	//Port = /dev/ttyS0
+	//BaudRate = 38400 //500000 //9600 //38400
+	//Streaming = true
+	//Type = AUV
+	//Resolution = 0.1
+	//STAY_AWAKE = 1
+
+	//Below for network use
+	CONNECTION	= SOCKET
+	//REMUS_ADDR	= 192.168.1.152
+        REMUS_ADDR      = $(REMUS_ADDR)
+	REMUS_PORT	= $(REMUS_PORT)
+	LOCAL_PORT	= $(REMUS_PORT)
+
+    STAY_AWAKE 	= 1	
+}
+
+ProcessConfig = pEchoVar
+{
+  AppTick   = 5
+  CommsTick = 5
+
+//  ECHO    = REMUS_Latitude       -> NAV_LAT
+//  ECHO	  = REMUS_Longitude	 -> NAV_LONG 
+//  ECHO	  = REMU S_DEPTH	 	 -> NAV_DEPTH 
+//  ECHO	  = REMUS_Altitude 	 -> NAV_ALTITUDE 
+//  ECHO	  = REMUS_Heading 	 -> NAV_HEADING 
+//  ECHO	  = REMUS_Velocity_Fwd 	 -> FORWARD_SPEED 
+
+  }

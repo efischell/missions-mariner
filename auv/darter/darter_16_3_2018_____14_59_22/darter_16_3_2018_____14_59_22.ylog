@@ -1,0 +1,8 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LOG FILE:       ./darter_16_3_2018_____14_59_22/darter_16_3_2018_____14_59_22.ylog
+%% FILE OPENED ON  Wed Dec 31 19:00:00 1969
+%% LOGSTART               1521212361.45
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+0.159044   MOOS_DEBUG           pMarinePID           Paused Due To Tardy HELM Input: THRUST=0 
+1.153069   MOOS_DEBUG           pHelmIvP             pHelmIvP AllStop: clear 
+8.775354   MOOS_DEBUG           pMarinePID           pMarinePID Control Is On 

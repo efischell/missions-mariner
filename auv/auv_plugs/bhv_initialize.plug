@@ -1,0 +1,24 @@
+//  This is a behavior configuration file. 
+//
+//  Legal comments are anything to the right of "//"
+//  or anything to the right of "#"
+
+initialize  BACKSEAT_READY = 1
+//initialize  RECON_ENGAGE = true
+
+initialize_  GOTO_SURFACE = FALSE
+initialize_  MISSION_STATE = FALSE
+
+initialize  GPS_UPDATE_RECEIVED = Null
+initialize  ALREADY_STARTED= false
+initialize   SURVEY_START  = 0.0
+// allows yoyo in all deploy modes
+initialize  IN_TRACK = TRUE
+
+//initialize  TRANSIT_MODE = $(TRANSIT_MODE)
+
+initialize  IVP_MANUAL_OVERIDE = FALSE
+
+initialize  DEPLOY_DEPTH_ADAPT = FALSE
+
+initialize SPEED = $(DEPLOY_SPEED)

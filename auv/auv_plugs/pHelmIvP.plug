@@ -1,0 +1,30 @@
+//------------------------------------------------------------------
+// pHelmIvP configuration block
+
+#if $(defined{showhelm}) && $(defined{quiet}) 
+  @ANTLER Run = pHelmIvP @ NewConsole = true
+#endif
+
+ProcessConfig = pHelmIvP
+{
+  AppTick    = 4
+  CommsTick  = 4
+
+  Verbose    = $(HELM_VERBOSITY)
+
+  Domain     = course:0:359:360 : optional
+  Domain     = speed:0:$(HIGH_SPEED):21 : optional
+
+ #define HELM_DEPTH_MAX  #eval $(MAX_DEPTH)*2
+ #define HELM_DEPTH_BINS #eval 8*$(MAX_DEPTH)+1
+
+  Domain     = depth:0:$(HELM_DEPTH_MAX):$(HELM_DEPTH_BINS) : optional
+  Domain     = tol:1:100:15 : optional
+  ACTIVE_START = true
+  	
+  //IF BELOW IS COMMENTED OUT - BHV FILE IS GIVEN AS COMMAND LINE ARG	
+
+   Behaviors = $(BHV)
+
+}
+

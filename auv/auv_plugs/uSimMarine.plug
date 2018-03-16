@@ -1,0 +1,39 @@
+                                                                
+ProcessConfig = uSimMarine                                      
+{                                                               
+  AppTick   = 4                                                 
+  CommsTick = 4                                                 
+
+  prefix        = NAV                                                                
+  start_x       = $(LAUNCH_X)
+  start_y       = $(LAUNCH_Y)
+  start_heading = $(LAUNCH_HEADING)                                               
+  start_speed   = 0                                             
+  start_depth   = $(LAUNCH_DEPTH)
+  start_pos     = x=$(LAUNCH_X), y=$(LAUNCH_Y), speed=0, heading=$(LAUNCH_HEADING), depth=$(LAUNCH_DEPTH)         
+                                                                
+  force_x       = 0                                             
+  force_y       = 0                                             
+  force_theta   = 0                                             
+  force_vector  = 0,0      // heading, magnitude             
+                                                                
+  buoyancy_rate        = 0.025 // meters/sec                 
+  max_acceleration     = 0.2     // meters/sec^2               
+  max_deceleration     = 0.5   // meters/sec^2               
+  max_depth_rate       = 0.5   // meters/sec                 
+  max_depth_rate_speed = 2.0   // meters/sec                 
+                                                                
+  sim_pause            = false // or {true}                  
+  dual_state           = false // or {true}                  
+  thrust_reflect       = false // or {true}                  
+  thrust_factor        = 20    // range [0,inf)              
+  turn_rate            = 70    // range [0,100]              
+  thrust_map           = 0:0, 20:0.50, 40:1.0, 60:1.5, 80:2.0, 100:2.5     
+
+#ifdef TRIM_TOLERANCE
+    trim_tolerance = $(TRIM_TOLERANCE)
+#endif
+#ifdef MAX_TRIM_DELAY
+    max_trim_delay = $(MAX_TRIM_DELAY)
+#endif
+}                                                               

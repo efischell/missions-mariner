@@ -1,0 +1,81 @@
+// Here we go with the Hierarchial State Machine definitions
+
+// In mission or all stop on surface waiting for new deploy command
+
+set MODE = ALLSTOP {
+MISSION_STATE = ALLSTOP
+} MISSION
+
+// The following is the iIvPRemote mode
+
+set MODE = MANUAL {
+MODE = ALLSTOP
+IVP_MANUAL_OVERIDE = TRUE
+}
+
+// Diving (active mission) or surfacing (mission done)
+
+set MODE = SURFACING {
+MODE = MISSION
+GOTO_SURFACE = TRUE
+} DIVING
+
+// Deploy, Off, Return, Prosecute or Abort
+
+set MODE = DEPLOY {
+MODE = MISSION:DIVING
+MISSION_STATE = DEPLOY
+}
+
+set MODE = ABORT {
+MODE = MISSION:DIVING
+MISSION_STATE = ABORT
+}
+
+// Deploy Missions
+
+set MODE = TRANSIT {
+MODE = MISSION:DIVING:DEPLOY
+MISSION_STATE = DEPLOY
+TRANSIT_MODE = ROUTE
+}
+
+set MODE = LOITER {
+MODE = MISSION:DIVING:DEPLOY
+DEPLOY_MISSION = LOITER
+}
+
+set MODE = RETURN {
+MODE = MISSION:DIVING:DEPLOY
+DEPLOY_MISSION = RETURN
+}
+
+set MODE = RACETRACK{
+MODE = MISSION:DIVING:DEPLOY
+DEPLOY_MISSION = RACETRACK 
+}
+
+set MODE = ZIGZAG {
+MODE = MISSION:DIVING:DEPLOY
+DEPLOY_MISSION = ZIGZAG
+}
+
+set MODE = LAWNMOWER {
+MODE = MISSION:DIVING:DEPLOY
+DEPLOY_MISSION = LAWNMOWER
+}
+
+
+set MODE = ADAPTIVE{
+MODE = MISSION:DIVING:DEPLOY
+DEPLOY_MISSION = ADAPTIVE
+}
+
+
+
+
+
+
+
+
+

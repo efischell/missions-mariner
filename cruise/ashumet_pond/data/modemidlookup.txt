@@ -1,0 +1,7 @@
+// modem id, vehicle name (should be community name), vehicle type, other aliases
+0, broadcast, broadcast
+1, pcom, ship
+3, darter, auv
+4, snoopy, auv
+5, sandshark, auv
+10, jetyak, usv

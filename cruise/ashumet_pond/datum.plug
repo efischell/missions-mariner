@@ -1,0 +1,7 @@
+
+// defined in cruise.def
+  LatOrigin  = $(LAT_ORIGIN)
+  LongOrigin = $(LONG_ORIGIN)
+
+
+

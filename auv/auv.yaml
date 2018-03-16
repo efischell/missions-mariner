@@ -1,0 +1,5 @@
+# YAML-format auv params
+
+HIGH_SPEED: 2.0
+LOW_SPEED: 1.0
+MAX_AUV_DEPTH: 100.0

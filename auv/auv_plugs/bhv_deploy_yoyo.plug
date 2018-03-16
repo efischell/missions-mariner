@@ -1,0 +1,29 @@
+//*************** non-adaptive yoyo racetrack ************************
+
+Behavior = BHV_SmartYoyo
+{
+  name      = environmental_yoyo
+  updates = SMART_YOYO
+  min_depth       = $(YOYO_UPPER)
+  max_depth       = $(YOYO_LOWER)
+  min_altitude    = $(YOYO_MINALTITUDE)
+  period          = $(YOYO_PERIOD)
+  period_segments = $(YOYO_SEGMENTS)
+  depth_function  = $(YOYO_SHAPE)
+  duration  = no-time-limit
+  condition = (MODE == YOYO)
+  condition = (ON_TRACKLINE = TRUE) 
+}
+
+//deploy depth
+//----------------------------------------------
+Behavior = BHV_ConstantDepth
+{
+  name      = yoyo_approach_depth
+  updates   = SENSOR_DEPTH_DEPLOY
+  duration  = no-time-limit
+
+  condition = (MODE == YOYO)
+  condition = (ON_TRACKLINE = FALSE) 
+}
+

@@ -1,0 +1,26 @@
+udp broadcast 4477
+255.255.0.0
+
+
+10.0.1.50 lamss-server-1
+10.0.1.52 kai-yuh
+10.0.1.53 richard
+10.0.1.54 henrik 1
+10.0.1.55 henrik 2
+10.0.1.56 erin
+10.0.1.57 arjuna 
+10.0.1.58 andrew 
+
+10.0.1.142 toby
+
+10.0.99.73 deckbox
+10.0.2.7 deckbox (macrura?)
+
+// ship GPS
+socat  -d -d -v  UDP-RECV:40000 TCP:localhost:54321
+socat  -d -d -v  UDP-RECV:50000 TCP:localhost:54321
+
+
+testing USBL
+rebroadcast vehicle position
+

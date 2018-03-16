@@ -1,0 +1,52 @@
+// Other Multi-state behaviors
+
+// the following is Mike's for the real world
+ Behavior = BHV_PeriodicSurface
+{
+  name            = surface_for_gps
+  pwt = 500
+  period          = $(GPS_PERIOD)
+  speed_to_surface = 1.5
+  zero_speed_depth = 1
+  pending_status_var = PENDING_SURFACE
+  max_time_at_surface = 30
+  ascent_grade  = fullspeed 
+  mark_variable   = GPS_UPDATE_RECEIVED
+  updates         = GPS_CONFIGURATION
+  condition       = MISSION_STATE != PROSECUTE
+  condition       = (DEPLOY_MISSION != RACETRACK) or (((DEPLOY_MISSION = RACETRACK) and (IN_TRACK = FALSE)) or (ALREADY_STARTED = true))
+  activeflag = ALREADY_STARTED = true
+  inactiveflag = ALREADY_STARTED = false
+} 
+
+//behavior for forcing a desired heading towards the center of the op box while running periodic surface:
+//Behavior = BHV_SurfacingHeading
+//{
+//  name            = surfacing_heading
+//  pwt = 500
+//  updates = SURFACING_VAR_HEAD
+//  speed = 1.6
+//  condition	  = (DEPLOY_MISSION != SAMPLETARFIELD)
+//  condition = (DEPLOY_MISSION !=RACETRACK) 
+//or (((DEPLOY_MISSION = SAMPLETARFIELD) and (IN_LAYER = FALSE) and PENDING_SURFACE < 10) or (APPROACHING_HEADING=true))
+  //condition       = (DEPLOY_MISSION != RACETRACK) or (((DEPLOY_MISSION = RACETRACK) and (IN_TRACK = FALSE)) or (APPROACHING_HEADING = true))
+//} 
+
+
+
+//----------------------------------------------
+Behavior = BHV_MaintainHeading
+{
+  name       = maintain_heading
+  pwt        = 400
+  condition  = (DEPLOY_MISSION = RACETRACK) and (PERIODIC_ASCEND = true) 
+  nostarve   = PERIODIC_ASCEND, 30
+  duration   = 600
+
+         heading = on_active
+       peakwidth = 20
+       basewidth = 160
+     summitdelta = 95
+
+}
+

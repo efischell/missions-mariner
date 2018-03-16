@@ -1,0 +1,37 @@
+//*************** Surfacing Behaviors ******************************
+Behavior = BHV_GoToDepth
+{
+  name          = surface_depth
+  pwt           = 100
+  #ifdef SURFACE_DEPTH
+   depth         = $(SURFACE_DEPTH)
+  #else
+   depth = 0.5
+  #endif
+  arrival_delta = 1
+  perpetual 	= true
+  condition = (MODE == SURFACING)
+// reset to ALLOFF mode, ready for new commands
+  endflag       = MISSION_STATE = ALLSTOP
+  endflag       = GOTO_SURFACE = FALSE
+  endflag       = SONAR_CONTROL = OFF
+
+// Commented out in MINUS'07 to avoid having a BF runaway!!!!
+// Uncomment to disable backseat control at surfacing
+//  endflag	= BACKSEAT_ON = 0
+}
+
+Behavior = BHV_ConstantSpeed
+{
+  name          = surface_speed
+  pwt           = 100
+  #ifdef SURFACE_SPEED
+   speed         = $(SURFACE_SPEED)
+  #else
+   speed        = $(LOW_SPEED)
+  #endif
+  duration	= no-time-limit
+  condition     = (MODE == SURFACING)
+}
+
+

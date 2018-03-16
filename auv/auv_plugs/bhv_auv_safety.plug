@@ -1,0 +1,29 @@
+Behavior = BHV_MinAltitude
+{
+  name = min_altitude
+  pwt = 1000
+  min_altitude  = 3.0
+  condition = (MODE == DIVING)  
+  condition = (NAV_ALTITUDE > 1.0)
+} 
+
+Behavior = BHV_MaxDepth
+{
+  name = max_auv_depth
+  pwt = 1000
+  max_depth  = $(MAX_AUV_DEPTH)
+  condition = (MODE == DIVING)  
+} 
+
+Behavior = BHV_ConstantSpeed
+{
+  name          = diving_at_speed
+  pwt           = 200
+  speed         = $(HIGH_SPEED)
+  duration	= no-time-limit
+  condition     = NAV_DEPTH < 2.0
+  condition     = DESIRED_DEPTH  > 2.0
+  condition     = (MISSION_STATE != IDLE)
+//  condition     = NAV_ALTITUDE > 1.0
+}
+

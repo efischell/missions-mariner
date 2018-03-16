@@ -1,0 +1,9 @@
+.tmp/*
+logs/*/*
+topside/.*
+topside/last.*
+cruise/current/
+auv/*/last*
+auv/*/.*
+*~
+auv/*/*.txt

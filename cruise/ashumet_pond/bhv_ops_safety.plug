@@ -1,0 +1,17 @@
+//----------------------------------------------
+
+//*************** Safety Behaviors ******************************
+//----------------------------------------------
+Behavior = BHV_OpRegion
+{
+
+  polygon      = label,SafeOpBox: $(OP_BOX)
+
+  name         = bhv_op_region
+  max_depth    = $(MAX_DEPTH)
+  max_time     = $(MAX_TIME)
+
+  trigger_entry_time = 1.0
+  trigger_exit_time  = 1.0  
+}
+

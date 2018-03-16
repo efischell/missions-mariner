@@ -1,0 +1,7 @@
+BHV: 'current.bhv'
+simulation:
+  HELM_VERBOSITY: 'terse'
+  LOG_PATH: '../../logs/simulation/'
+runtime:
+  HELM_VERBOSITY: 'quiet'
+  LOG_PATH: '../../logs/runtime/'

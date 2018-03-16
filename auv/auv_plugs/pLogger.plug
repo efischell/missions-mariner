@@ -1,0 +1,16 @@
+ProcessConfig = pLogger
+{
+  //over loading basic params...
+  AppTick 	= 20.0
+  CommsTick 	= 20.0
+
+  File		= $(VNAME)
+  PATH          = $(LOG_PATH)
+  SyncLog 	= false
+  AsyncLog 	= true
+  FileTimeStamp = true
+  UTCLogDirectories = true
+
+  WildCardLogging = true
+  WildCardOmitPattern = DB_*SUMMARY
+}

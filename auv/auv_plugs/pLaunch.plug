@@ -1,0 +1,15 @@
+ProcessConfig = pLaunch
+{
+  AppTick    = 4
+  CommsTick  = 4
+
+  deploy_delay = 30
+  trigger_depth = -10
+  deploy_x = $(DEPLOY_X)
+  deploy_y = $(DEPLOY_Y)
+  loiter_radius = $(LOITER_RADIUS)
+  loiter_points = $(LOITER_POINTS)
+  deploy_depth = $(DEPLOY_DEPTH)
+  op_radius = $(OPERATION_RADIUS)
+  deploy_duration = $(DEPLOY_DURATION)
+} 
