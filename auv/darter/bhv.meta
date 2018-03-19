@@ -10,116 +10,25 @@
 //
 // questions about this setup should be directed to t. schneider: tes@mit.edu
 
-//#include all.ydef
-//#include ../auv_plugs/bhv_alpha.plug
+#include allconfig.ydef
 // global variables (ServerHost, ServerPort, Community, etc.)
-//#include ../auv_plugs/bhv_initialize.plug
-//#include ../auv_plugs/bhv_modes.plug
-//#include ../auv_plugs/bhv_surface.plug
+#include ../auv_plugs/bhv_initialize.plug
+#include ../auv_plugs/bhv_modes.plug
+#include ../auv_plugs/bhv_surface.plug
 
 // Basic Deploy behaviors
-//#include ../auv_plugs/bhv_deploy_return.plug
-//#include ../auv_plugs/bhv_deploy_racetrack.plug
-//#include ../auv_plugs/bhv_deploy_loiter.plug
-//#include ../auv_plugs/bhv_deploy_depth.plug
+#include ../auv_plugs/bhv_deploy_return.plug
+#include ../auv_plugs/bhv_deploy_racetrack.plug
+#include ../auv_plugs/bhv_deploy_loiter.plug
+#include ../auv_plugs/bhv_deploy_depth.plug
 
 
 // Abort behavior, constant heading for specified duration
-//#include ../../cruise/current/bhv_ops_safety.plug
+#include ../../cruise/current/bhv_ops_safety.plug
 
 
 // Other safety behaviors
-//#include ../auv_plugs/bhv_auv_safety.plug
+#include ../auv_plugs/bhv_auv_safety.plug
 //  #include ../auv_plugs/bhv_misc.plug
 
-//#ifdef GPS_PERIOD
-
-  //#include ../auv_plugs/bhv_misc.plug
-
-//#endif
-//------------------------------------------------
-// File: bravo.bhv
-// Name: M. Benjamin
-// Date: Jan 1, 2010
-//------------------------------------------------
-
-initialize   DEPLOY = true
-initialize   RETURN = false
-initialize   WPT_FRESH = false
-
-set MODE = ACTIVE {
-  DEPLOY = true
-} INACTIVE
-
-set MODE = SURVEYING {
-  MODE = ACTIVE
-  WPT_FRESH != true
-  RETURN != true
-} 
-
-set MODE = SAMPLING {
-  MODE = ACTIVE
-  RETURN != true
-} RETURNING
-
-
-//----------------------------------------------
-Behavior = BHV_Waypoint
-{ 
-  name      = waypt_survey
-  pwt       = 100
-  condition = MODE == SURVEYING
-  endflag   = RETURN = true
-  UPDATES   = WPT_UPDATE
-  perpetual = true
-
-            lead = 8
-     lead_damper = 1
-           speed = 2   // meters per second
-    capture_line = true
-  capture_radius = 5.0
-     slip_radius = 15.0
-          points = 60,-40 : 60,-160 : 150,-160 : 180,-100 : 150,-40
-          repeat = 1
-         wptflag = WPT_FRESH = true
-
-    visual_hints = nextpt_color=yellow, nextpt_lcolor=aqua
-    visual_hints = vertex_color=dodger_blue, edge_color=white
-    visual_hints = vertex_size=4, edge_size=1
-}
-
-//----------------------------------------------
-Behavior=BHV_Waypoint
-{
-  name       = waypt_return
-  pwt        = 100
-  condition  = MODE == RETURNING
-  perpetual  = true
-  endflag    = RETURN = false
-  endflag    = DEPLOY = false
-  endflag    = MISSION = complete
-
-           speed = 2.0
-  capture_radius = 2.0
-     slip_radius = 8.0
-          points = 0,0
-}
-
-
-//----------------------------------------------
-Behavior=BHV_StationKeep
-{
-  name       = waypt_station
-  pwt        = 100
-  condition  = MODE == SAMPLING
-  perpetual  = true
-  endflag    = WPT_FRESH = false
-  duration   = 45
-  
- center_activate = true
-    inner_radius = 10
-    outer_radius = 20
-    outer_speed  = 2
-      swing_time = 3
-}
 

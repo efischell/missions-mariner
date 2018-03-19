@@ -1,0 +1,18 @@
+# mission definition in .yaml
+# used to init mariner_missionmanage
+# must include vars modes, mode_order
+modes:
+  - start_loiter
+    DEPLOY_MISSION: LOITER
+    FLAG: time
+    DURATION: 100
+  - line_cross
+    DEPLOY_MISSION: RACETRACK
+    FLAG: complete
+    DURATION: 500
+  - return_home
+    DEPLOY_MISSION: RETURN
+    x: 0
+    y: 0
+
+mode_order: ['start_loiter','line_cross','return_home']

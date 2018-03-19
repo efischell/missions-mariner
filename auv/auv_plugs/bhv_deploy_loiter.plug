@@ -4,12 +4,13 @@
 Behavior = BHV_Loiter
 {
   name      = deploy_loiter
+  pwt = 100
   speed     = $(DEPLOY_SPEED)
-  radius    = $(WPT_RADIUS)
   nm_radius = $(NM_RADIUS)
   updates   = SENSOR_DEPLOY
   duration  = no-time-limit
   clockwise = $(LOITER_CLOCKWISE)
-  acquire_dist = 10
+  acquire_dist = 5
   condition = MODE == LOITER
+  polygon = radial:: x=$(DEPLOY_X),y=$(DEPLOY_Y),radius=$(LOITER_RADIUS),pts=$(LOITER_POINTS)
 }

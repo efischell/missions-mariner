@@ -4,15 +4,13 @@
 Behavior = BHV_RaceTrack
 {
   name      = deploy_racetrack
-  track_length = 400
+  track_length = $(RACETRACK_LENGTH)
   track_width  = $(RACETRACK_WIDTH)
   distance_tolerance  = 10
   approach_angle = 60
-  heading        = 270
+  heading        = $(RACETRACK_HEADING)
   speed          = $(DEPLOY_SPEED)
-  peak_width     = 30
-  summit_delta   = 50
-  points = 500.0, 200.0
+  points = $(DEPLOY_X), $(DEPLOY_Y)
   clockwise = $(RACETRACK_CLOCKWISE)
   updates = SENSOR_RACETRACK
   duration  = no-time-limit

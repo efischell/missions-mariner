@@ -7,13 +7,13 @@ Behavior = BHV_MinAltitude
   condition = (NAV_ALTITUDE > 1.0)
 } 
 
-Behavior = BHV_MaxDepth
-{
-  name = max_auv_depth
-  pwt = 1000
-  max_depth  = $(MAX_AUV_DEPTH)
-  condition = (MODE == DIVING)  
-} 
+//Behavior = BHV_MaxDepth
+//{
+  //name = max_auv_depth
+  //pwt = 1000
+  //max_depth  = $(MAX_AUV_DEPTH)
+  //condition = (MODE == DIVING)  
+//} 
 
 Behavior = BHV_ConstantSpeed
 {
