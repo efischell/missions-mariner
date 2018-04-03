@@ -1,0 +1,12 @@
+# ros plug for mariner_missionmanage missionmanage node
+node:
+  name: "missionmanage" #required
+  pkg: "mariner_missionmanage" #required: package
+  type: "missionmanage.py" #required: executable
+  viewmode: "xterm" # not required, xterm or quiet
+
+# param vals: can be optional or required
+param:
+  start_state: $(DEPLOY_MISSION)
+  switch_state: "LOITER" 
+

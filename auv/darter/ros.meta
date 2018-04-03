@@ -1,0 +1,6 @@
+# meta file for launching ros apps
+# list ros config files here!
+# Use yaml list format
+filelist:
+  - cruise/current/mariner_missionmanage.rplug
+  - sensors/splitbeam/splitbeam_parser.rplug

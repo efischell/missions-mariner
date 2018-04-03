@@ -1,0 +1,11 @@
+# ros plug for spliteam_parser parser node
+node:
+  name: "splitbeam_parser" #required
+  pkg: "splitbeam_parser" #required: package
+  type: "parser.py" #required: executable
+
+# param vals: can be optional or required
+param:
+  start_state: $(DEPLOY_MISSION)
+  switch_state: "LOITER" 
+

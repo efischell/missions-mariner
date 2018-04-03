@@ -47,8 +47,13 @@ fi
 # convert all .yaml files to a single all.ydef file
 vdir=$PWD
 pushd $MISSION_ROOT/.scripts
-python convertYAMLtoDEF.py $vdir/all.yaml $RUNTYPE
+python convertYAMLtoDEF.py $vdir/all.yaml $RUNTYPE $MISSIONS_FLAGS
 popd
+
+
+
+
+# Launch stuff:
 
 
 function check_param()
@@ -85,6 +90,26 @@ for param in $@ $MISSIONS_FLAGS; do
         FLAGS="${FLAGS} $param"
     fi
 done
+
+# ROS Launch stuff:
+
+source $MISSION_ROOT/../mariner-src/ros/devel/setup.bash
+pushd $MISSION_ROOT/.scripts
+
+# script to make ros launch script from allconfig.yaml and ros.meta
+if [POPUP==false]; then
+  python writeROSLaunch.py $vdir/allconfig.yaml $vdir/ros.meta quiet
+else
+  python writeROSLaunch.py $vdir/allconfig.yaml $vdir/ros.meta 
+fi
+
+popd
+#exit
+#popd
+cp $MISSION_ROOT/.tmp/roslaunch.launch $vdir/lastros.launch
+
+
+# MOOS Launch stuff:
 
 cat > $MISSION_TMP/caveat <<EOF
 ///////////////////////////////////////////////////////////////
@@ -178,12 +203,6 @@ if [[ $RUNTYPE == runtime || $RUNTYPE == simulation ]]; then
         NO_DMAC="true"
       fi
     done
-#    if [ "${NO_DMAC}" != "true" ]; then
-#      echo "configuring DMAC comms"
-#      pushd ${MISSION_ROOT}/dmac/scripts >& /dev/null 
-#        ./configure_comms.sh ${MISSION_ROOT}
-#      popd >& /dev/null
-#    fi
 
     if [ -e ${META_PREFIX}.meta ]; then
         preprocess ${META_PREFIX}.meta ${MOOS_PREFIX}.moos
@@ -221,7 +240,10 @@ for entry in ${FLAGS}; do
 done
 
 #let's go!
-echo "${i} | starting mission (> pAntler ${MOOS_PREFIX}.moos) ..." && i=$(($i+1))
+echo "${i} | starting moos and ros (> roslaunch $vdir/lastros.launch; pAntler ${MOOS_PREFIX}.moos) ..." && i=$(($i+1))
+
+#run roslaunch:
+roslaunch $vdir/lastros.launch >& ${MISSION_TMP}/roserrors.log &
 
 if [[ $USE_SCREEN == 1 ]]; then
     echo "Use 'screen -ls' to see available screens, 'screen -r 22100.pAcommsHandler' to attach and 'C-A d' to detach"
