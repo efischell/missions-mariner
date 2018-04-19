@@ -119,6 +119,9 @@ cat > $MISSION_TMP/caveat <<EOF
 ///////////////////////////////////////////////////////////////
 EOF
 
+
+
+
 # run text preprocessor
 function preprocess()
 {
@@ -129,12 +132,13 @@ function preprocess()
 
     rm -f ${OUT}
     
+    
 
     # expand with gpp
     # remove all blank lines
     # prepend with caveat
     gpp -n -I`pwd` -I$MISSION_ROOT --includemarker "/// -- include % % % --" +c "//" "\n" -U "\$(" ")" "{" "," "})" "{" "}" "#" "\\\\" -M "#" "\n" " " " " "\n" "(" ")" ${FLAGS} ${IN} 2> ${MISSION_TMP}/gpp_error | sed -e '/^ *$/ d' | cat $MISSION_TMP/caveat - > ${OUT} 
-
+     
     egrep --color "warn|error" ${MISSION_TMP}/gpp_error && (echo "gpp had warnings or errors processing ${IN} ... fail." && exit 1)
 
     echo "${i} | checking ${OUT} for unexpanded macros ..." && i=$(($i+1))
@@ -175,9 +179,10 @@ function append_antler_list()
         
         # don't autolaunch uXMS
         if [[ $shell_name == "uXMS" ]]; then continue; fi
-
+	
+	if [[ $shell_name != "MOOS_ROS_BRIDGE" ]];then
         which $shell_name >& /dev/null || (echo "Cannot find $shell_name on your path. Check to make sure this application is available. Also, note that the meta file syntax for MOOS applications running as a different name from the binary name must be 'pMOOSApp/some_identifier' where pMOOSApp is the binary name, followed by a '/' and the desired additional identifier (any characters)." && exit 1)
-
+	fi
 	LAUNCHTYPE="NewConsole=${POPUP}"
 	if [[ $USE_SCREEN == 1 ]]; then
 	    LAUNCHTYPE="LaunchType=Screen"
@@ -194,6 +199,18 @@ function append_antler_list()
     echo "}" >> ${MOOS}
 
 }
+
+# Set up bridge.moos:
+#preprocess $MISSION_ROOT/cruise/current/bridge.plug $MISSION_ROOT/.tmp/bridge.moos
+
+
+#run roslaunch:
+echo "${i} | starting ros (> roslaunch $vdir/lastros.launch)"
+roslaunch $vdir/lastros.launch >& ${MISSION_TMP}/roserrors.log &
+i=$(($i+1))
+
+#Launch the bridge:
+pAntler $MISSION_ROOT/cruise/current/bridge.moos > /dev/null&
 
 if [[ $RUNTYPE == runtime || $RUNTYPE == simulation ]]; then
     echo "All mission flags: ${FLAGS}"
@@ -240,14 +257,13 @@ for entry in ${FLAGS}; do
 done
 
 #let's go!
-echo "${i} | starting moos and ros (> roslaunch $vdir/lastros.launch; pAntler ${MOOS_PREFIX}.moos) ..." && i=$(($i+1))
-
-#run roslaunch:
-roslaunch $vdir/lastros.launch >& ${MISSION_TMP}/roserrors.log &
+echo "${i} | starting moos (> roslaunch $vdir/lastros.launch; pAntler ${MOOS_PREFIX}.moos) ..." && i=$(($i+1))
 
 if [[ $USE_SCREEN == 1 ]]; then
     echo "Use 'screen -ls' to see available screens, 'screen -r 22100.pAcommsHandler' to attach and 'C-A d' to detach"
 fi
+
+
 
 if [[ -e ${MOOS_PREFIX}.moos ]]; then
     if [[ $BACKGROUND == true ]]; then
@@ -257,3 +273,5 @@ if [[ -e ${MOOS_PREFIX}.moos ]]; then
         pAntler ${MOOS_PREFIX}.moos >& /dev/null 
     fi
 fi
+
+

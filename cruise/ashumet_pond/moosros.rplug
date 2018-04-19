@@ -1,0 +1,7 @@
+# ros plug for moosros node
+node:
+  name: "moosros" #required
+  pkg: "moosros" #required: package
+  type: "Bridge" #required: executable
+  viewmode: "xterm" # not required, xterm or quiet
+  args: "/home/efischell/mariner-workspace/missions-mariner/cruise/current/cruisebridge.xml /home/efischell/mariner-workspace/missions-mariner/cruise/current/bridge.moos" # not required: arguements

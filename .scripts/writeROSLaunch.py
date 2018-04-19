@@ -40,13 +40,16 @@ def checkrplug(rdict,rfile):
             print 'using default viewmode...' + viewmode
             node['viewmode']='xterm'
     else:
-        node['viewmode']=viewmode 
+        node['viewmode']=viewmode
+    if 'args' not in node:
+        node['args']=""
     
     #get any params
     try:
         params = rdict['param']
-    except ValueError:
-        print "No parameters for file " + rflie  
+    except KeyError:
+        print "No parameters for file " + rfile
+        params={}
     else:
         # identify and $(VARNAME) and plug:
         for key,val in params.items():
@@ -61,13 +64,15 @@ def checkrplug(rdict,rfile):
 def writeToLaunchFile(node,params,f):
     # write node, params to launch file:
     if node['viewmode']=='xterm':
-        print >> f,'<node name=\"' + node['name'] +'\" pkg=\"' + node['pkg'] +'\" type="' + node['type'] + '\" output="screen" launch-prefix="xterm -e">'
+        print >> f,'<node name=\"' + node['name'] +'\" pkg=\"' + node['pkg'] +'\" type="' + node['type'] + '\" output="screen" launch-prefix="xterm -e" args="' + node['args']+ '\">'
     elif node['viewmode']=='quiet':
-        print >> f,'<node name=\"' + node['name'] +'\" pkg=\"' + node['pkg'] +'\" type="' + node['type'] + '\" >'
+        print >> f,'<node name=\"' + node['name'] +'\" pkg=\"' + node['pkg'] +'\" type="' + node['type'] + '\"  args="' + node['args']+ '\">'
     
     for key in params:
         print >> f, '<param name=\"' + key +'\" value=\"' + params[key] + '\"/>'
     print >> f,'</node>'
+
+    
     # TODO: Add in respawn, required options for ros nodes!
 
 def readrplug_writefile(rplug,f):

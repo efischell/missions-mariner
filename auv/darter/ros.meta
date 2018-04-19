@@ -4,3 +4,4 @@
 filelist:
   - cruise/current/mariner_missionmanage.rplug
   - sensors/splitbeam/splitbeam_parser.rplug
+  - cruise/current/moosros.rplug

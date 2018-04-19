@@ -28,7 +28,7 @@ MOOSTimeWarp = 1
 
 #include cruise/current/datum.plug
 
-@ANTLER Run = MOOSDB @ NewConsole = false
+//@ANTLER Run = MOOSDB @ NewConsole = false
 
 #include auv/auv_plugs/pMarinePID.plug
 #include auv/auv_plugs/pHelmIvP.plug
@@ -43,6 +43,7 @@ MOOSTimeWarp = 1
 
 #include auv/auv_plugs/uXMS.plug
 #include auv/auv_plugs/pLogger.plug
+//#include cruise/current/bridge.moos
 
 #ifdef runtime
 
