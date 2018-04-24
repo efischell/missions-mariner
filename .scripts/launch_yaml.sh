@@ -204,13 +204,8 @@ function append_antler_list()
 #preprocess $MISSION_ROOT/cruise/current/bridge.plug $MISSION_ROOT/.tmp/bridge.moos
 
 
-#run roslaunch:
-echo "${i} | starting ros (> roslaunch $vdir/lastros.launch)"
-roslaunch $vdir/lastros.launch >& ${MISSION_TMP}/roserrors.log &
-i=$(($i+1))
 
-#Launch the bridge:
-pAntler $MISSION_ROOT/cruise/current/bridge.moos > /dev/null&
+
 
 if [[ $RUNTYPE == runtime || $RUNTYPE == simulation ]]; then
     echo "All mission flags: ${FLAGS}"
@@ -263,6 +258,8 @@ if [[ $USE_SCREEN == 1 ]]; then
     echo "Use 'screen -ls' to see available screens, 'screen -r 22100.pAcommsHandler' to attach and 'C-A d' to detach"
 fi
 
+#run roslaunch:
+#MOOSDB > /dev/null &
 
 
 if [[ -e ${MOOS_PREFIX}.moos ]]; then
@@ -270,8 +267,15 @@ if [[ -e ${MOOS_PREFIX}.moos ]]; then
         pAntler ${MOOS_PREFIX}.moos >& /dev/null &
 	echo $! >  ${MISSION_TMP}/pAntler.pid
     else
-        pAntler ${MOOS_PREFIX}.moos >& /dev/null 
+        pAntler ${MOOS_PREFIX}.moos >& /dev/null &
     fi
 fi
+#rosrun moosros Bridge /home/efischell/mariner-workspace/missions-mariner/cruise/current/cruisebridge.xml /home/efischell/mariner-workspace/missions-mariner/cruise/current/bridge.moos&
+echo "${i} | starting ros (> roslaunch $vdir/lastros.launch)"
+#rosrun moosros Bridge /home/efischell/mariner-workspace/missions-mariner/cruise/current/cruisebridge.xml /home/efischell/mariner-workspace/missions-mariner/cruise/current/bridge.moos>& /dev/null &
 
+roslaunch $vdir/lastros.launch >& ${MISSION_TMP}/roserrors.log &
+#roslaunch $vdir/launch_moosrosbridge.launch # >& ${MISSION_TMP}/moosrosbridgeerrors.log 
+#rosrun moosros_tester counter>& /dev/null 
 
+i=$(($i+1))&

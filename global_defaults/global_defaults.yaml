@@ -1,4 +1,5 @@
 BHV: 'current.bhv'
+MISSION_PATH: 
 simulation:
   HELM_VERBOSITY: 'terse'
   LOG_PATH: '../../logs/simulation/'

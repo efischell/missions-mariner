@@ -9,11 +9,28 @@
   </message>
 
   <message>
+    <moosname>StateCounterROS</moosname>
+    <rosname>StateCounterROS</rosname>
+    <moostype>Double</moostype>
+    <rostype>std_msgs/Int32</rostype>
+    <direction>toMOOS</direction>
+  </message>
+
+  <message>
     <moosname>CounterFromMOOS</moosname>
     <rosname>CounterFromMOOS</rosname>
     <moostype>Double</moostype>
     <rostype>std_msgs/Int32</rostype>
     <direction>toROS</direction>
   </message>
+
+  <message>
+    <moosname>NAV_X</moosname>
+    <rosname>NAV_X</rosname>
+    <moostype>Double</moostype>
+    <rostype>std_msgs/Float32</rostype>
+    <direction>toROS</direction>
+  </message>
+
 
 </moosrosconfig>

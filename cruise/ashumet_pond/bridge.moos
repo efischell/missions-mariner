@@ -10,7 +10,7 @@ Community  = darter
 Processconfig = ANTLER
 {
   MSBetweenLaunches = 100
-  Run = MOOSDB           @ NewConsole = false
+  //Run = MOOSDB           @ NewConsole = false
   Run = MOOS_ROS_BRIDGE  @ NewConsole = false
 }
 
