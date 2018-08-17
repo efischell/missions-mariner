@@ -64,6 +64,7 @@
 #define LOITER_POINTS 6.0
 #define OP_BOX 50,30:270,50:270,-100:100,-100:10.0,-40.0:10.0,0
 // from file ../../global_defaults/global_defaults.yaml
+#define MISSION_PATH None
 #define BHV current.bhv
 #ifdef runtime
 #define LOG_PATH ../../logs/runtime/

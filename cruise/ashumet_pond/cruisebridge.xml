@@ -15,6 +15,13 @@
     <rostype>std_msgs/Int32</rostype>
     <direction>toMOOS</direction>
   </message>
+<message>
+    <moosname>DesiredState</moosname>
+    <rosname>DesiredState</rosname>
+    <moostype>String</moostype>
+    <rostype>std_msgs/String</rostype>
+    <direction>toMOOS</direction>
+  </message>
 
   <message>
     <moosname>CounterFromMOOS</moosname>
