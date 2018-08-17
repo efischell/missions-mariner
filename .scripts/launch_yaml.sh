@@ -200,12 +200,6 @@ function append_antler_list()
 
 }
 
-# Set up bridge.moos:
-#preprocess $MISSION_ROOT/cruise/current/bridge.plug $MISSION_ROOT/.tmp/bridge.moos
-
-
-
-
 
 if [[ $RUNTYPE == runtime || $RUNTYPE == simulation ]]; then
     echo "All mission flags: ${FLAGS}"
@@ -259,8 +253,6 @@ if [[ $USE_SCREEN == 1 ]]; then
 fi
 
 #run roslaunch:
-#MOOSDB > /dev/null &
-
 
 if [[ -e ${MOOS_PREFIX}.moos ]]; then
     if [[ $BACKGROUND == true ]]; then
@@ -270,12 +262,10 @@ if [[ -e ${MOOS_PREFIX}.moos ]]; then
         pAntler ${MOOS_PREFIX}.moos >& /dev/null &
     fi
 fi
-#rosrun moosros Bridge /home/efischell/mariner-workspace/missions-mariner/cruise/current/cruisebridge.xml /home/efischell/mariner-workspace/missions-mariner/cruise/current/bridge.moos&
+
 echo "${i} | starting ros (> roslaunch $vdir/lastros.launch)"
-#rosrun moosros Bridge /home/efischell/mariner-workspace/missions-mariner/cruise/current/cruisebridge.xml /home/efischell/mariner-workspace/missions-mariner/cruise/current/bridge.moos>& /dev/null &
 
 roslaunch $vdir/lastros.launch >& ${MISSION_TMP}/roserrors.log &
-#roslaunch $vdir/launch_moosrosbridge.launch # >& ${MISSION_TMP}/moosrosbridgeerrors.log 
-#rosrun moosros_tester counter>& /dev/null 
+
 
 i=$(($i+1))&
